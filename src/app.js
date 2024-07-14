@@ -12,3 +12,6 @@ app.set('views', 'src/views');
 app.listen(3000, () => {
   console.log('listening in http://localhost:3000');
 });
+
+const homeRoutes= require('./routes/home.routes');
+app.use('/', homeRoutes);
