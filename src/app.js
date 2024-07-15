@@ -18,3 +18,6 @@ app.use('/', homeRoutes);
 
 const productRoutes = require('./routes/products.routes');
 app.use('/books', productRoutes);
+
+const userRoutes = require('./routes/users.routes');
+app.use('/users', userRoutes);
