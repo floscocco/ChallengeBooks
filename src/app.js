@@ -15,3 +15,6 @@ app.listen(3000, () => {
 
 const homeRoutes= require('./routes/home.routes');
 app.use('/', homeRoutes);
+
+const productRoutes = require('./routes/products.routes');
+app.use('/books', productRoutes);

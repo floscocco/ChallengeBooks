@@ -4,7 +4,7 @@ const path = require('path');
 const productsController = require('../controllers/productsController');
 
 
-routes.get('/books/detail/:id', productsController.detail);
+routes.get('/detail/:id', productsController.detail);
 
 
 module.exports = routes;
