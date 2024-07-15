@@ -1,7 +1,6 @@
 const path = require('path');
 
 let db = require('../models');
-const { Op } = require('sequelize');
 
 let productService = {
 
@@ -14,7 +13,17 @@ let productService = {
             console.log(error);
             return([]);
         }
-    }
+    },
+    getById: async function(id) {
+        try {
+          return await db.Book.findByPk(id, {
+            include: [{ model: db.Author, as: 'authors' }]
+          });
+        } catch (error) {
+          console.log(error);
+          return ([]);
+        }
+      }
 }
 
 module.exports = productService;

@@ -5,6 +5,14 @@ const productsController = {
         let books = await productService.getAll();
         res.render('home', { books });
     },
+
+    detail: async function(req, res) {
+        
+        let bookId = req.params.id;
+        let book = await productService.getById(bookId);
+        res.render('bookDetail', { book });
+        
+    },
 };
 
 module.exports = productsController;
