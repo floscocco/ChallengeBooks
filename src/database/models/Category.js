@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
   Categorie.associate = function (models) {
     Categorie.belongsTo (models.User, {
         as: "user",
-        foreingKey: "id"
+        foreignKey: "id"
     })
   }
 

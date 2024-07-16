@@ -30,8 +30,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="email" name="email" class="form-control form-control-lg" placeholder="example@gmail.com" />
-  
+                  <input type="email" name="email" class="form-control form-control-lg" placeholder="example@gmail.com" value="<%= oldData.email %>"/>
+                  <% if (errores && errores.email) { %>
+                    <small class="error-text"><%= errores.email.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
@@ -46,7 +49,10 @@
                 <div class="col-md-9 pe-5">
   
                   <input type="password" name="password" class="form-control form-control-lg" >
-  
+                  <% if (errores && errores.contraseña) { %>
+                    <small class="error-text"><%= errores.contraseña.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   

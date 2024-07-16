@@ -30,8 +30,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="text" name="name" class="form-control form-control-lg" />
-  
+                  <input type="text" name="name" id="name" class="form-control form-control-lg" value="<%= oldData.name %>" />
+                  <% if (errores.name) { %>
+                    <small class="error-text"><%= errores.name.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
 
@@ -45,8 +48,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="email" name="email" class="form-control form-control-lg" placeholder="example@gmail.com" />
-  
+                  <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="example@gmail.com" value="<%= oldData.email %>"/>
+                  <% if (errores.email) { %>
+                    <small class="error-text"><%= errores.email.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
@@ -60,8 +66,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="text" name="country" class="form-control form-control-lg" placeholder="Argentina" />
-  
+                  <input type="text" name="country" id="country" class="form-control form-control-lg" placeholder="Argentina" value="<%= oldData.country %>"/>
+                  <% if (errores.country) { %>
+                    <small class="error-text"><%= errores.country.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
@@ -75,8 +84,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="password" name="password" class="form-control form-control-lg" >
-  
+                  <input type="password" name="password" id="password" class="form-control form-control-lg" >
+                  <% if (errores.password) { %>
+                    <small class="error-text"><%= errores.password.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
