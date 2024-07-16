@@ -4,12 +4,19 @@ const bcryptjs= require('bcryptjs');
 let userService = {
 
     getByField: async function(field,value) {
-        const user = await db.User.find({ where: { [field]: value } });
+        const user = await db.User.findOne({ where: { [field]: value } });
         return user;       
     },
 
     createUser: async function(userData) {
-        const newUser = await db.User.create(userData);
+        let { Name, Email, Country, Pass, CategoryId } = userData;
+        const newUser = await db.User.create({
+            Name,
+            Email,
+            Country,
+            Pass,
+            CategoryId,
+         });
         return newUser;
     },
 
