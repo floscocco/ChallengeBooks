@@ -15,6 +15,12 @@ app.use(session({
   saveUninitialized: false
 }));
 
+app.use((req, res, next) => {
+  res.locals.userLogged = req.session.userLogged;
+  console.log('userLogged en res.locals:', res.locals.userLogged);
+  next();
+});
+
 app.use(cookies());
 
 app.listen(3000, () => {
