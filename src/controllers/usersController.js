@@ -82,6 +82,12 @@ let usersController = {
 
     },
 
+    logOut: function(req, res) {
+        res.clearCookie('userEmail');
+        req.session.destroy();
+        return res.redirect('/');
+    },
+
 
 }
 

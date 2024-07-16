@@ -14,5 +14,8 @@ routes.get("/login", usersController.login);
 
 routes.post("/login", usersController.processLogin); 
 
+//LogOut
+routes.get("/logout", usersController.logOut);
+
 
 module.exports = routes;

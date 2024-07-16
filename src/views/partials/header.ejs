@@ -13,7 +13,7 @@
     <div class="col-md-3 text-end">
       <% if(userLogged && userLogged.dataValues) { %>
         <h5 class="nav-link px-2 link-dark">Hola <%= userLogged.dataValues.Name %></h5>
-        <a href="/" class="btn btn-outline-primary me-2">LogOut</a>
+        <a href="/users/logout" class="btn btn-outline-primary me-2">LogOut</a>
       <% }else{ %>
         <a href="/users/login" class="btn btn-outline-primary me-2">Login</a>
         <a href="/users/register" class="btn btn-outline-primary me-2">Sign-up</a>
