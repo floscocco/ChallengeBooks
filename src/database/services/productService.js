@@ -27,19 +27,19 @@ let productService = {
       }
     },
 
-    create: async function(newData) {
-      try {
-        let newBook = await db.Book.create({
-          title: newData.title,
-          cover: newData.cover,
-          description: newData.description,
-        });
-    
-        return newBook;
-      } catch (error) {
-          console.log(error);
-          return ([]);
-      }
+    create: async function(userData) {
+      let { Title, Cover, Description } = userData;
+
+      console.log("MI OBJETO ENTRANTE ES: "+ userData)
+      console.log("MI TITULO DENTRO DEL OBJETO ENTRANTE ES: "+ userData.Title)
+      const newBook = await db.Book.create({
+            title: Title,
+            cover: Cover,
+            description: Description,
+      });
+      console.log("MI OBJETO SALIENTE ES: "+ newBook)
+      console.log("MI TITULO DE OBJETO SALIENTE ES: "+ newBook.Title)
+      return newBook;
     },
 
     update: async function(id, newData) {

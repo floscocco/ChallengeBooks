@@ -31,7 +31,9 @@
           </a>
         <% })} %>
       </div>
-      <a href="/books/create" class="btn btn-primary btn-lg px-4 gap-3">Add Book</a>
+      <% if(userLogged) { %>
+        <a href="/books/create" class="btn btn-primary btn-lg px-4 gap-3">Add Book</a>
+      <% } %>
   </div>
 </div>
 
