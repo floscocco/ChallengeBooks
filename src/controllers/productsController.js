@@ -29,7 +29,7 @@ const productsController = {
             
         };
 
-        const newBook =await productService.create(userData);
+        const newBook = await productService.create(userData);
         res.redirect(`/books/detail/${newBook.id}`);
         
     },
@@ -46,9 +46,16 @@ const productsController = {
         
         let bookId = req.params.id;
         let { title, cover, description } = req.body;
-        console.log('Datos recibidos:', { title, cover, description });
         await productService.update(bookId, { title, cover, description });
         res.redirect(`/books/detail/${bookId}`);
+    },
+
+    delete: async function(req, res) {
+
+        let bookId = req.params.id;
+        await productService.delete(bookId);
+        res.redirect('/');
+
     },
 
 };

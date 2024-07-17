@@ -53,7 +53,15 @@ let productService = {
           console.log(error);
           return ([]);
       }
-    }
+    },
+
+    delete: async function (bookId) {
+
+      await db.Book.destroy({ 
+          where: { id: bookId } 
+      });                       
+    },
+    
 }
 
 module.exports = productService;

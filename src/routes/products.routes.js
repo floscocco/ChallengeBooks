@@ -12,4 +12,6 @@ routes.post('/create', productsController.createBook);
 routes.get('/edit/:id', productsController.edit);
 routes.put('/edit/:id', productsController.update);
 
+routes.delete('/:id', productsController.delete);
+
 module.exports = routes;
