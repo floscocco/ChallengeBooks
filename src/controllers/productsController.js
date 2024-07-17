@@ -14,6 +14,20 @@ const productsController = {
         
     },
 
+    create: async function(req, res) {
+
+        res.render('createBook');
+
+    },
+
+    createBook: async function(req, res) {
+        
+        let { title, cover, description } = req.body;
+        let newBook = await productService.create({ title, cover, description });
+        res.redirect(`/books/detail/${newBook.id}`);
+        
+    },
+
     edit: async function(req, res) {
         
         let bookId = req.params.id;

@@ -14,12 +14,28 @@ let productService = {
           return([]);
       }
     },
+
     getById: async function(id) {
       try {
         const book = await db.Book.findByPk(id, {
         include: [{ model: db.Author, as: 'authors' }]
       });
         return book;
+      } catch (error) {
+          console.log(error);
+          return ([]);
+      }
+    },
+
+    create: async function(newData) {
+      try {
+        let newBook = await db.Book.create({
+          title: newData.title,
+          cover: newData.cover,
+          description: newData.description,
+        });
+    
+        return newBook;
       } catch (error) {
           console.log(error);
           return ([]);
@@ -40,8 +56,8 @@ let productService = {
   
         return book;
       } catch (error) {
-        console.error('Error al actualizar el libro:', error);
-        return null;
+          console.log(error);
+          return ([]);
       }
     }
 }
