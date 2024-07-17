@@ -1,5 +1,4 @@
 const productService = require ('../database/services/productService');
-const { validationResult } = require('express-validator');
 
 const productsController = {
     home: async (req, res) => {
@@ -23,9 +22,6 @@ const productsController = {
 
     createBook: async function(req, res) {
         
-        console.log('MI TITULO ES: ' + req.body.title)
-        console.log('MI COVER ES: ' + req.body.cover)
-        console.log('MI DESCRIPCION ES: ' + req.body.description)
         const userData = {
             Title: req.body.title,
             Cover: req.body.cover,
@@ -34,7 +30,6 @@ const productsController = {
         };
 
         const newBook =await productService.create(userData);
-        console.log('CREE NUEVO LIBRO: ' + newBook)
         res.redirect(`/books/detail/${newBook.id}`);
         
     },
@@ -51,6 +46,7 @@ const productsController = {
         
         let bookId = req.params.id;
         let { title, cover, description } = req.body;
+        console.log('Datos recibidos:', { title, cover, description });
         await productService.update(bookId, { title, cover, description });
         res.redirect(`/books/detail/${bookId}`);
     },

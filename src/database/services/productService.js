@@ -30,23 +30,17 @@ let productService = {
     create: async function(userData) {
       let { Title, Cover, Description } = userData;
 
-      console.log("MI OBJETO ENTRANTE ES: "+ userData)
-      console.log("MI TITULO DENTRO DEL OBJETO ENTRANTE ES: "+ userData.Title)
       const newBook = await db.Book.create({
             title: Title,
             cover: Cover,
             description: Description,
       });
-      console.log("MI OBJETO SALIENTE ES: "+ newBook)
-      console.log("MI TITULO DE OBJETO SALIENTE ES: "+ newBook.Title)
       return newBook;
     },
 
     update: async function(id, newData) {
       try {
-        let book = await db.Book.findByPk(id, {
-          include: [{ model: db.Author, as: 'authors' }]
-        });
+        let book = await db.Book.findByPk(id);
   
         book.title = newData.title;
         book.cover = newData.cover;
