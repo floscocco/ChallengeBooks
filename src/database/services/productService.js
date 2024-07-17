@@ -5,26 +5,45 @@ let db = require('../models');
 let productService = {
 
     getAll: async function() {
-        try {
-            return await db.Book.findAll({
-                include: [{ model: db.Author, as: 'authors'}]
-            })
-        } catch (error) {
-            console.log(error);
-            return([]);
-        }
+      try {
+          return await db.Book.findAll({
+              include: [{ model: db.Author, as: 'authors'}]
+          })
+      } catch (error) {
+          console.log(error);
+          return([]);
+      }
     },
     getById: async function(id) {
-        try {
-          const book = await db.Book.findByPk(id, {
-            include: [{ model: db.Author, as: 'authors' }]
-          });
-          return book;
-        } catch (error) {
+      try {
+        const book = await db.Book.findByPk(id, {
+        include: [{ model: db.Author, as: 'authors' }]
+      });
+        return book;
+      } catch (error) {
           console.log(error);
           return ([]);
-        }
       }
+    },
+
+    update: async function(id, newData) {
+      try {
+        let book = await db.Book.findByPk(id, {
+          include: [{ model: db.Author, as: 'authors' }]
+        });
+  
+        book.title = newData.title;
+        book.cover = newData.cover;
+        book.description = newData.description;
+  
+        await book.save();
+  
+        return book;
+      } catch (error) {
+        console.error('Error al actualizar el libro:', error);
+        return null;
+      }
+    }
 }
 
 module.exports = productService;

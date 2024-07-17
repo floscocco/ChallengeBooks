@@ -20,7 +20,15 @@ const productsController = {
         let book = await productService.getById(bookId);
         res.render('editBook', { book });
     
-    },    
+    },
+    
+    update: async function(req, res) {
+        
+        let bookId = req.params.id;
+        let { title, cover, description } = req.body;
+        await productService.update(bookId, { title, cover, description });
+        res.redirect(`/books/detail/${bookId}`);
+    },
 
 };
 
