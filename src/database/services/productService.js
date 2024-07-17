@@ -16,9 +16,10 @@ let productService = {
     },
     getById: async function(id) {
         try {
-          return await db.Book.findByPk(id, {
+          const book = await db.Book.findByPk(id, {
             include: [{ model: db.Author, as: 'authors' }]
           });
+          return book;
         } catch (error) {
           console.log(error);
           return ([]);

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const session = require ('express-session');
 const cookies = require('cookie-parser');
+const methodOverride = require('method-override'); 
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
 });
 
 app.use(cookies());
+
+app.use(methodOverride('_method'));
 
 app.listen(3000, () => {
   console.log('listening in http://localhost:3000');
