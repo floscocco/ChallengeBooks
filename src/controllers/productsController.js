@@ -1,4 +1,5 @@
 const productService = require ('../database/services/productService');
+const authorService = require('../database/services/authorService');
 const { validationResult } = require('express-validator');
 
 const productsController = {
@@ -39,14 +40,19 @@ const productsController = {
         const userData = {
             Title: req.body.title,
             Cover: req.body.cover,
-            Description: req.body.description
-            
+            Description: req.body.description,
+            AuthorName: req.body.authorName,
+            AuthorCountry: req.body.authorCountry
         };
-
+        
         try {
+            let author = await authorService.findOrCreate(userData.AuthorName, userData.AuthorCountry);
             const newBook = await productService.create(userData);
+            await productService.associateAuthor(newBook.id, author.id);
+
             res.redirect(`/books/detail/${newBook.id}`);
         } catch (error) {
+            console.error('Error en createBook:', error);
             res.status(500).send('Internal Server Error');
         }
         

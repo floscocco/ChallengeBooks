@@ -30,13 +30,27 @@ let productService = {
     create: async function(userData) {
       let { Title, Cover, Description } = userData;
 
-      const newBook = await db.Book.create({
-            title: Title,
-            cover: Cover,
-            description: Description,
+      try {
+        const newBook = await db.Book.create({
+          title: Title,
+          cover: Cover,
+          description: Description,
       });
-      return newBook;
+
+        return newBook;
+
+        } catch (error) {
+            console.log('Error en createBook en productService:', error);
+            return([]); 
+        }
     },
+
+    associateAuthor: async function(bookId, authorId) {
+      const book = await db.Book.findByPk(bookId);
+      if (book) {
+          await book.addAuthor(authorId);
+      }
+  },
 
     update: async function(id, newData) {
       try {
@@ -57,9 +71,18 @@ let productService = {
 
     delete: async function (bookId) {
 
-      await db.Book.destroy({ 
-          where: { id: bookId } 
-      });                       
+      try {
+        
+        await db.BooksAuthors.destroy({
+          where: { BookId: bookId }
+        });
+        await db.Book.destroy({
+          where: { id: bookId }
+        });
+        } catch (error) {
+            console.log('Error al eliminar el libro en productService:', error);
+            return ([]);
+        }                      
     },
     
 }
