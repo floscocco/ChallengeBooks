@@ -30,8 +30,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="text" name="title" class="form-control form-control-lg" value="<%= book.title %>"/>
-  
+                  <input type="text" name="title" class="form-control form-control-lg" value="<%= oldData.title || '' %>"/>
+                  <% if (errores.title) { %>
+                    <small class="error-text"><%= errores.title.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
 
@@ -45,8 +48,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="text" name="cover" class="form-control form-control-lg" value="<%= book.cover %>"/>
-  
+                  <input type="text" name="cover" class="form-control form-control-lg" value="<%= oldData.cover || '' %>"/>
+                  <% if (errores.cover) { %>
+                    <small class="error-text"><%= errores.cover.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
@@ -60,8 +66,11 @@
                 </div>
                 <div class="col-md-9 pe-5">
   
-                  <input type="text" name="description" class="form-control form-control-lg" value="<%= book.description %>"/>
-  
+                  <input type="text" name="description" class="form-control form-control-lg" value="<%= oldData.description || '' %>"/>
+                  <% if (errores.description) { %>
+                    <small class="error-text"><%= errores.description.msg %></small>
+                  <% } %>
+
                 </div>
               </div>
   
