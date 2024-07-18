@@ -50,7 +50,7 @@ let productService = {
       if (book) {
           await book.addAuthor(authorId);
       }
-  },
+    },
 
     update: async function(id, newData) {
       try {

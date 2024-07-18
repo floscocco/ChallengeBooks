@@ -12,8 +12,16 @@ const validateBook= [
     
     body('description')
         .notEmpty().withMessage('Description is required')
-        .isLength({ min: 10 }).withMessage('Description must be at least 10 characters long')
+        .isLength({ min: 10 }).withMessage('Description must be at least 10 characters long'),
     
+    body('authorName')
+        .notEmpty().withMessage('Author name is required')
+        .isLength({ min: 3 }).withMessage('Author name must be at least 3 characters long'),
+
+    body('authorCountry')
+        .notEmpty().withMessage('Author country is required')
+        .isLength({ min: 2 }).withMessage('Author country must be at least 2 characters long')
+
 ];
 
 module.exports= validateBook;
