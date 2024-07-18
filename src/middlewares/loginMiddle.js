@@ -1,6 +1,6 @@
 const { body } = require('express-validator');
 
-const validacionesLogin= [
+const validateLogin= [
     body('email')
         .notEmpty().withMessage('You must complete the email field').bail()
         .isEmail().withMessage('You must complete the email field with a valid email'),
@@ -8,4 +8,4 @@ const validacionesLogin= [
         .notEmpty().withMessage('You must complete the password field')
 ];
 
-module.exports= validacionesLogin;
+module.exports= validateLogin;
