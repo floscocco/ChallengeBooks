@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const usersController = require('../controllers/usersController');
 
+const validateRegister = require('../middlewares/registerMiddle');
 const validateLogin = require('../middlewares/loginMiddle');
 
 const userLoggedValidation = require('../middlewares/loginValidationMiddle');
@@ -10,7 +11,7 @@ const userLoggedValidation = require('../middlewares/loginValidationMiddle');
 //Registro
 routes.get("/register", userLoggedValidation, usersController.register);
 
-routes.post("/register", usersController.processRegister);
+routes.post("/register", validateRegister, usersController.processRegister);
 
 //Logueo
 routes.get("/login", userLoggedValidation, usersController.login); 

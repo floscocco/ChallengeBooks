@@ -1,11 +1,14 @@
 const { body } = require('express-validator');
 
 const validateLogin= [
+    
     body('email')
-        .notEmpty().withMessage('You must complete the email field').bail()
-        .isEmail().withMessage('You must complete the email field with a valid email'),
+        .notEmpty().withMessage('Email is required').bail()
+        .isEmail().withMessage('Please enter a valid email address'),
+
     body('password')
-        .notEmpty().withMessage('You must complete the password field')
+        .notEmpty().withMessage('Password is required')
+        
 ];
 
 module.exports= validateLogin;
