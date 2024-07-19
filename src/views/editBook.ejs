@@ -75,6 +75,32 @@
               </div>
   
               <hr class="mx-n3">
+
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+                    <h6 class="mb-0">Author Name</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                    <input type="text" name="authorName" id="authorName" class="form-control form-control-lg" value="<%= author.name || '' %>"/>
+                    <% if (errores.authorName) { %>
+                        <small class="error-text"><%= errores.authorName.msg %></small>
+                    <% } %>
+                </div>
+              </div>
+    
+              <hr class="mx-n3">
+    
+              <div class="row align-items-center py-3">
+                  <div class="col-md-3 ps-5">
+                      <h6 class="mb-0">Author Country</h6>
+                  </div>
+                  <div class="col-md-9 pe-5">
+                      <input type="text" name="authorCountry" id="authorCountry" class="form-control form-control-lg" value="<%= author.country || '' %>"/>
+                      <% if (errores.authorCountry) { %>
+                          <small class="error-text"><%= errores.authorCountry.msg %></small>
+                      <% } %>
+                  </div>
+              </div>
   
               <div class="px-5 py-4">
                 <button type="submit" class="btn btn-primary btn-lg">Edit</button>

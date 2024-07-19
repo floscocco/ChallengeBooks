@@ -23,7 +23,7 @@ const productsController = {
             res.render('createBook', { errores: {}, oldData: {} });
         } catch (error) {
             console.log(error);
-            res.send('Error inesperado').status(500);
+            res.status(500).send('Internal Server Error');
         }
 
     },
@@ -52,7 +52,7 @@ const productsController = {
 
             res.redirect(`/books/detail/${newBook.id}`);
         } catch (error) {
-            console.error('Error en createBook:', error);
+            console.log(error);
             res.status(500).send('Internal Server Error');
         }
         
@@ -63,14 +63,18 @@ const productsController = {
         try {
             let bookId = req.params.id;
             let book = await productService.getById(bookId);
+            
+            let author = await book.getAuthors();
 
             res.render('editBook', { 
-                book, 
+                book,
+                author: author[0] || {}, 
                 errores: {}, 
                 oldData: book
             });
-            console.log("EL LIBRO ES " + book);
+
         } catch (error) {
+            console.log(error);
             res.status(500).send('Internal Server Error');
         }
     },
@@ -84,21 +88,24 @@ const productsController = {
             
             let bookId = req.params.id;
             let book = await productService.getById(bookId);
+            let author = await productService.getAuthorByBookId(bookId);
 
             return res.render('editBook', { 
-                book, 
+                book,
+                author: author || {}, 
                 errores: errors.mapped(), 
                 oldData 
             });
         }
 
         let bookId = req.params.id;
-        let { title, cover, description } = req.body;
+        let { title, cover, description, authorName, authorCountry } = req.body;
         
         try {
-            await productService.update(bookId, { title, cover, description });
+            await productService.update(bookId, { title, cover, description, authorName, authorCountry});
             return res.redirect(`/books/detail/${bookId}`);
         } catch (error) {
+            console.log(error);
             return res.status(500).send('Internal Server Error');
         }
 

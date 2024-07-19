@@ -10,12 +10,10 @@ const userLoggedValidation = require('../middlewares/loginValidationMiddle');
 
 //Registro
 routes.get("/register", userLoggedValidation, usersController.register);
-
 routes.post("/register", validateRegister, usersController.processRegister);
 
 //Logueo
 routes.get("/login", userLoggedValidation, usersController.login); 
-
 routes.post("/login", validateLogin, usersController.processLogin); 
 
 //LogOut

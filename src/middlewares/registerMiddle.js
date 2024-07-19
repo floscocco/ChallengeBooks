@@ -19,7 +19,6 @@ const validateRegister = [
 
     body('category')
         .notEmpty().withMessage('Category is required')
-        .isIn(['1', '2']).withMessage('Category must be either Admin or User')
 
 ];
 
